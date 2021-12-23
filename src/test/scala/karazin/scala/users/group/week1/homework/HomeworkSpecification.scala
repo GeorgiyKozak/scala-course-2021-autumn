@@ -30,7 +30,15 @@ object BooleanOperatorsSpecification extends Properties("Boolean Operators"):
     val (left, right) = pair
     
     or(left, right) == left || right
-  }   
+  }
+
+  property("andCBN") = propBoolean {
+    !and(false, throw Exception("Should be thrown in and method")) == true
+  }
+
+  property("orCBN") = propBoolean {
+    or(true, throw Exception("Should be thrown in or method")) == true
+  }
 
 end BooleanOperatorsSpecification
 

@@ -43,9 +43,9 @@ object Homework:
 
     def not(b: Boolean): Boolean = if b then false else true
 
-    def and(left: Boolean, right: Boolean): Boolean = if left then right else false
+    def and(left: Boolean, right: => Boolean): Boolean = if left then right else false
 
-    def or(left: Boolean, right: Boolean): Boolean = if left then true else right
+    def or(left: Boolean, right: => Boolean): Boolean = if left then true else right
 
   end `Boolean Operators`
 
@@ -60,7 +60,6 @@ object Homework:
 
       multImpl(a, b, 0)
     }
-
     val power: (BigInt, BigInt) => BigInt = (a, n) => {
       @tailrec
       def powerImpl(a: BigInt, n: BigInt, acc: BigInt): BigInt = {

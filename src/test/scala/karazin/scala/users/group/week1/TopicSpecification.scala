@@ -4,27 +4,29 @@ import org.scalacheck._
 import Prop.{forAll, propBoolean}
 import Topic._
 
-object TopicSpecification extends Properties("Topic"):
+object TopicSpecification extends Properties("Topic") :
 
   include(RecursionSpecification)
   include(TailRecursionSpecification)
   include(HigherOrderFunctionsSpecification)
-  
+
 end TopicSpecification
 
-object RecursionSpecification extends Properties("Recursion"):
+object RecursionSpecification extends Properties("Recursion") :
   // Importing arbitraies only
-  import arbitraries.{given Arbitrary[Int]} 
+
+  import arbitraries.{given Arbitrary[Int]}
   import utils._
-  
+
   property("factorial") = forAll { (n: Int) =>
     Recursion.factorial(n) == modelFactorial(n)
   }
 
 end RecursionSpecification
 
-object TailRecursionSpecification extends Properties("Tail Recursion"):
+object TailRecursionSpecification extends Properties("Tail Recursion") :
   // Importing arbitraies only
+
   import arbitraries.{given Arbitrary[Int]}
   import utils._
 
@@ -34,8 +36,9 @@ object TailRecursionSpecification extends Properties("Tail Recursion"):
 
 end TailRecursionSpecification
 
-object HigherOrderFunctionsSpecification extends Properties("Higher-Order Functions"):
+object HigherOrderFunctionsSpecification extends Properties("Higher-Order Functions") :
   // Importing arbitraies only
+
   import arbitraries.{given Arbitrary[Int], given Arbitrary[(Int, Int)], given Arbitrary[BigInt => BigInt]}
   import `Higher-Order Functions`._
   import utils._
