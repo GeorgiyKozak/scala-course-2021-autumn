@@ -34,19 +34,31 @@ object Homework:
       !(this < that)
 
     @targetName("addition")
-    infix def +(that: Rational): Rational = ???
+    infix def +(that: Rational): Rational = Rational(
+      this.numer * that.denom + that.numer * this.denom,
+      this.denom * that.denom)
+
 
     @targetName("negation")
-    infix def unary_- : Rational = ???
+    infix def unary_- : Rational = Rational(-this.numer, this.denom)
 
     @targetName("substraction")
-    infix def -(that: Rational): Rational = ???
+    infix def -(that: Rational): Rational = this + (-that)
 
     @targetName("multiplication")
-    infix def *(that: Rational): Rational = ???
+    infix def *(that: Rational): Rational = Rational(
+      this.numer * that.numer,
+      this.denom * that.denom)
 
     @targetName("devision")
-    infix def /(that: Rational): Rational = ???
+    infix def /(that: Rational): Rational = {
+      require(that.numer != 0, "Denominator equals zero")
+      val numer: Int = this.numer * that.denom
+      val denom: Int = this.denom * that.numer
+
+      if denom < 0 then Rational(-numer, abs(denom))
+      else Rational(numer, denom)
+    }
 
     override def toString: String = s"${this.numer}/${this.denom}"
 
@@ -55,7 +67,17 @@ object Homework:
 
     private lazy val g = gcd(abs(x), y)
 
-    override def equals(other: Any): Boolean = ???
+    override def equals(other: Any): Boolean = other match {
+      case that: Rational => (this.numer == that.numer) && (this.denom == that.denom)
+      case _ => false
+    }
+
+    override def hashCode(): Int = {
+      val prime = 31
+      val result = prime * 1 + numer.hashCode()
+      prime * result + denom.hashCode()
+
+    }
 
   end Rational
 
