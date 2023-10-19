@@ -4,6 +4,19 @@ import scala.annotation.tailrec
 
 object Homework:
 
+  object Nat:
+    // Optional task
+    def fromInt(int: Int) =
+      require(int >= 0, "Negative number cannot be converted to Nat")
+
+      @tailrec
+      def fromIntRec(acc: Nat, int: Int): Nat =
+        if int == 0 then acc
+        else fromIntRec(acc.successor, int - 1)
+
+      fromIntRec(Zero, int)
+  end Nat
+
   // Peano numbers
   abstract class Nat:
     def isZero: Boolean
@@ -16,16 +29,6 @@ object Homework:
     
     // Optional task
     def toInt: Int
-    
-    // Optional task
-    def fromInt(int: Int) =
-      require (int >= 0, "Negative number cannot be converted to Nat")
-      @tailrec
-      def fromIntRec(acc: Nat, int: Int): Nat =
-        if int == 0 then acc
-        else fromIntRec(acc.successor, int - 1)
-
-      fromIntRec(Zero, int)
 
     override def toString: String = s"Nat($predecessor)"
   
