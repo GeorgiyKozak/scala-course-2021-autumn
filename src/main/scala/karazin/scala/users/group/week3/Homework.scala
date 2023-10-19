@@ -69,7 +69,7 @@ object Homework:
 
     override def equals(obj: Any): Boolean = obj match
       case zero: Zero ⇒ false
-      case nat: Nat   ⇒ this.successor == nat.successor
+      case nat: Nat   ⇒ this.predecessor == nat.predecessor
       case _          ⇒ false
 
 
